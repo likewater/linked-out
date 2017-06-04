@@ -1,4 +1,4 @@
-package com.example.guest.myrestaurants;
+package com.example.guest.mylinks;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

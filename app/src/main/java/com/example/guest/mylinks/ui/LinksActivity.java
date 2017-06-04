@@ -1,19 +1,15 @@
-package com.example.guest.myrestaurants.ui;
+package com.example.guest.mylinks.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.example.guest.myrestaurants.R;
-import com.example.guest.myrestaurants.adapters.RestaurantListAdapter;
-import com.example.guest.myrestaurants.models.Restaurant;
-import com.example.guest.myrestaurants.services.YelpService;
+import com.example.guest.mylinks.R;
+import com.example.guest.mylinks.adapters.LinkListAdapter;
+import com.example.guest.mylinks.models.Link;
+import com.example.guest.mylinks.services.YelpService;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -25,30 +21,30 @@ import okhttp3.Response;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class RestaurantsActivity extends AppCompatActivity {
-    public static final String TAG = RestaurantsActivity.class.getSimpleName();
+public class LinksActivity extends AppCompatActivity {
+    public static final String TAG = LinksActivity.class.getSimpleName();
 
     @Bind(R.id.recyclerView) RecyclerView mRecyclerView;
-    private RestaurantListAdapter mAdapter;
+    private LinkListAdapter mAdapter;
 
-    public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
+    public ArrayList<Link> mLinks = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_restaurants);
+        setContentView(R.layout.activity_links);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
         String location = intent.getStringExtra("location");
 
-        getRestaurants(location);
+        getLinks(location);
     }
 
-    private void getRestaurants(String location) {
+    private void getLinks(String location) {
         final YelpService yelpService = new YelpService();
 
-        yelpService.findRestaurants(location, new Callback() {
+        yelpService.findLinks(location, new Callback() {
 
             @Override
             public void onFailure(Call call, IOException e) {
@@ -57,16 +53,16 @@ public class RestaurantsActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(Call call, Response response) {
-                mRestaurants = yelpService.processResults(response);
+                mLinks = yelpService.processResults(response);
 
-                RestaurantsActivity.this.runOnUiThread(new Runnable() {
+                LinksActivity.this.runOnUiThread(new Runnable() {
 
                     @Override
                     public void run() {
-                        mAdapter = new RestaurantListAdapter(getApplicationContext(), mRestaurants);
+                        mAdapter = new LinkListAdapter(getApplicationContext(), mLinks);
                         mRecyclerView.setAdapter(mAdapter);
                         RecyclerView.LayoutManager layoutManager =
-                                new LinearLayoutManager(RestaurantsActivity.this);
+                                new LinearLayoutManager(LinksActivity.this);
                         mRecyclerView.setLayoutManager(layoutManager);
                         mRecyclerView.setHasFixedSize(true);
                     }
@@ -76,18 +72,18 @@ public class RestaurantsActivity extends AppCompatActivity {
     }
 }
 
-//public class RestaurantsActivity extends AppCompatActivity {
-//    public static final String TAG = RestaurantsActivity.class.getSimpleName();
+//public class LinksActivity extends AppCompatActivity {
+//    public static final String TAG = LinksActivity.class.getSimpleName();
 //
 //    @Bind(R.id.locationTextView) TextView mLocationTextView;
 //    @Bind(R.id.listView) ListView mListView;
 //
-//    public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
+//    public ArrayList<Link> mLinks = new ArrayList<>();
 //
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_restaurants);
+//        setContentView(R.layout.activity_links);
 //        ButterKnife.bind(this);
 //
 //        Intent intent = getIntent();
@@ -110,22 +106,22 @@ public class RestaurantsActivity extends AppCompatActivity {
 //
 //            @Override
 //            public void onResponse(Call call, Response response) {
-//                mRestaurants = yelpService.processResults(response);
+//                mLinks = yelpService.processResults(response);
 //
-//                RestaurantsActivity.this.runOnUiThread(new Runnable() {
+//                LinksActivity.this.runOnUiThread(new Runnable() {
 //                    @Override
 //                    public void run() {
 //
-//                        String[] restaurantNames = new String[mRestaurants.size()];
+//                        String[] restaurantNames = new String[mLinks.size()];
 //                        for (int i = 0; i < restaurantNames.length; i++) {
-//                            restaurantNames[i] = mRestaurants.get(i).getName();
+//                            restaurantNames[i] = mLinks.get(i).getName();
 //                        }
 //
-//                        ArrayAdapter adapter = new ArrayAdapter(RestaurantsActivity.this,
+//                        ArrayAdapter adapter = new ArrayAdapter(LinksActivity.this,
 //                                android.R.layout.simple_list_item_1, restaurantNames);
 //                        mListView.setAdapter(adapter);
 //
-//                        for (Restaurant restaurant : mRestaurants) {
+//                        for (Link restaurant : mLinks) {
 //                            Log.d(TAG, "Name: " + restaurant.getName());
 //                            Log.d(TAG, "Phone: " + restaurant.getPhone());
 //                            Log.d(TAG, "Website: " + restaurant.getWebsite());
@@ -147,13 +143,13 @@ public class RestaurantsActivity extends AppCompatActivity {
 
 
 
-//public class RestaurantsActivity extends AppCompatActivity {
+//public class LinksActivity extends AppCompatActivity {
 //    @Bind(R.id.locationTextView) TextView mLocationTextView;
 //    @Bind(R.id.listView) ListView mListView;
 //
-//    public ArrayList<Restaurant> mRestaurants = new ArrayList<>();
+//    public ArrayList<Link> mLinks = new ArrayList<>();
 //
-//    public static final String TAG = RestaurantsActivity.class.getSimpleName();
+//    public static final String TAG = LinksActivity.class.getSimpleName();
 //
 //    private String[] restaurants = new String[] {"Sweet Hereafte", "Cricket", "Hawthorne Fish House", "Viking Soul Food",
 //            "Red Square", "Horse Brass", "Dick's Kitchen", "Taco Bell", "Me Kha Noodle Bar",
@@ -166,7 +162,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_restaurants);
+//        setContentView(R.layout.activity_links);
 //        ButterKnife.bind(this);
 //
 //        mListView = (ListView) findViewById(R.id.listView);
@@ -182,7 +178,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 //            @Override
 //            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                String restaurant = ((TextView)view).getText().toString();
-//                Toast.makeText(RestaurantsActivity.this, restaurant, Toast.LENGTH_LONG).show();
+//                Toast.makeText(LinksActivity.this, restaurant, Toast.LENGTH_LONG).show();
 //                Log.v("TAG", "In the onItemClickListener!");
 //            }
 //        });
@@ -211,7 +207,7 @@ public class RestaurantsActivity extends AppCompatActivity {
 //                    String jsonData = response.body().string();
 //                    if (response.isSuccessful()) {
 //                        Log.v(TAG, jsonData);
-//                        mRestaurants = yelpService.processResults(response);
+//                        mLinks = yelpService.processResults(response);
 //                    }
 //                } catch (IOException e) {
 //                    e.printStackTrace();

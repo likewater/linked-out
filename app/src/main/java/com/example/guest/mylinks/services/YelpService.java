@@ -1,7 +1,7 @@
-package com.example.guest.myrestaurants.services;
+package com.example.guest.mylinks.services;
 
-import com.example.guest.myrestaurants.Constants;
-import com.example.guest.myrestaurants.models.Restaurant;
+import com.example.guest.mylinks.Constants;
+import com.example.guest.mylinks.models.Link;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +21,7 @@ import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
 public class YelpService {
 
-    public static void findRestaurants(String location, Callback callback) {
+    public static void findLinks(String location, Callback callback) {
         OkHttpOAuthConsumer consumer = new OkHttpOAuthConsumer(Constants.YELP_CONSUMER_KEY, Constants.YELP_CONSUMER_SECRET);
         consumer.setTokenWithSecret(Constants.YELP_TOKEN, Constants.YELP_TOKEN_SECRET);
 
@@ -41,8 +41,8 @@ public class YelpService {
         call.enqueue(callback);
     }
 
-    public ArrayList<Restaurant> processResults(Response response) {
-        ArrayList<Restaurant> restaurants = new ArrayList<>();
+    public ArrayList<Link> processResults(Response response) {
+        ArrayList<Link> links = new ArrayList<>();
 
         try {
             String jsonData = response.body().string();
@@ -73,9 +73,9 @@ public class YelpService {
                     for (int y = 0; y < categoriesJSON.length(); y++) {
                         categories.add(categoriesJSON.getJSONArray(y).get(0).toString());
                     }
-                    Restaurant restaurant = new Restaurant(name, phone, website, rating,
+                    Link link = new Link(name, phone, website, rating,
                             imageUrl, address, latitude, longitude, categories);
-                    restaurants.add(restaurant);
+                    links.add(link);
                 }
             }
         } catch (IOException e) {
@@ -83,6 +83,6 @@ public class YelpService {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        return restaurants;
+        return links;
     }
 }

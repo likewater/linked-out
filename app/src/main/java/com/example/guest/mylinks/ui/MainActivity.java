@@ -1,4 +1,4 @@
-package com.example.guest.myrestaurants.ui;
+package com.example.guest.mylinks.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -28,7 +28,7 @@ import android.graphics.Typeface;
 //            @Override
 //            public void onClick(View v) {
 //                String location = mLocationEditText.getText().toString();
-//                Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
+//                Intent intent = new Intent(MainActivity.this, LinksActivity.class);
 //                intent.putExtra("location", location);
 //                startActivity(intent);
 //            }
@@ -36,13 +36,13 @@ import android.graphics.Typeface;
 //    }
 //}
 
-import com.example.guest.myrestaurants.R;
+import com.example.guest.mylinks.R;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-    @Bind(R.id.findRestaurantsButton) Button mFindRestaurantsButton;
+    @Bind(R.id.findLinksButton) Button mFindLinksButton;
     @Bind(R.id.locationEditText) EditText mLocationEditText;
     @Bind(R.id.appNameTextView) TextView mAppNameTextView;
 
@@ -55,13 +55,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Typeface ostrichFont = Typeface.createFromAsset(getAssets(), "fonts/ostrich-regular.ttf");
         mAppNameTextView.setTypeface(ostrichFont);
 
-        mFindRestaurantsButton.setOnClickListener(this);
+        mFindLinksButton.setOnClickListener(this);
     }
             @Override
             public void onClick(View v) {
-                if (v == mFindRestaurantsButton) {
+                if (v == mFindLinksButton) {
                     String location = mLocationEditText.getText().toString();
-                    Intent intent = new Intent(MainActivity.this, RestaurantsActivity.class);
+                    Intent intent = new Intent(MainActivity.this, LinksActivity.class);
                     intent.putExtra("location", location);
                     startActivity(intent);
                 }

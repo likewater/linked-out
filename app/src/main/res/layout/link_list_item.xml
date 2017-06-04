@@ -7,7 +7,7 @@
     <ImageView
         android:layout_width="130dp"
         android:layout_height="100dp"
-        android:id="@+id/restaurantImageView"
+        android:id="@+id/linkImageView"
         android:src="@drawable/kitchen"
         android:scaleType="centerCrop"/>
 
@@ -21,10 +21,10 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/restaurantNameTextView"
+            android:id="@+id/linkNameTextView"
             android:textSize="20dp"
             android:textStyle="bold"
-            android:text="Restaurant Name"
+            android:text="Link Name"
             android:textColor="@color/colorPrimary"/>
 
         <TextView
@@ -32,7 +32,7 @@
             android:layout_height="wrap_content"
             android:text="One Cuisine Type"
             android:id="@+id/categoryTextView"
-            android:layout_below="@+id/restaurantNameTextView"
+            android:layout_below="@+id/linkNameTextView"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:textStyle="italic"/>

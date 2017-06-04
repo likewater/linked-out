@@ -1,4 +1,4 @@
-package com.example.guest.myrestaurants;
+package com.example.guest.mylinks;
 
 import org.junit.Test;
 

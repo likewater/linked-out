@@ -1,4 +1,4 @@
-package com.example.guest.myrestaurants;
+package com.example.guest.mylinks;
 
 public class Constants {
     public static final String YELP_CONSUMER_KEY = BuildConfig.YELP_CONSUMER_KEY;

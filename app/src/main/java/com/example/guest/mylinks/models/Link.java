@@ -1,11 +1,11 @@
-package com.example.guest.myrestaurants.models;
+package com.example.guest.mylinks.models;
 
 import org.parceler.Parcel;
 
 import java.util.ArrayList;
 
 @Parcel
-public class Restaurant {
+public class Link {
     String mName;
     String mPhone;
     String mWebsite;
@@ -16,11 +16,11 @@ public class Restaurant {
     double mLongitude;
     ArrayList<String> mCategories = new ArrayList<>();
 
-    public Restaurant() {}
+    public Link() {}
 
-    public Restaurant(String name, String phone, String website,
-                      double rating, String imageUrl, ArrayList<String> address,
-                      double latitude, double longitude, ArrayList<String> categories) {
+    public Link(String name, String phone, String website,
+                double rating, String imageUrl, ArrayList<String> address,
+                double latitude, double longitude, ArrayList<String> categories) {
         this.mName = name;
         this.mPhone = phone;
         this.mWebsite = website;
